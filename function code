@@ -1,0 +1,17 @@
+import logging
+import requests
+import azure.functions as func
+
+#in the main function we need to include all the names that we specified in the function.json (in this case: req and outputblob)
+def main(req: func.HttpRequest, outputblob: func.Out[str]) -> func.HttpResponse:
+
+    #logs the following message (while debugging):
+    logging.info('Python HTTP trigger function processed a request.')
+
+    #retrieves data from the server and writes it as a text file
+    api = requests.get('http://api.gios.gov.pl/pjp-api/rest/station/findAll')   
+    data=api.text
+    outputblob.set(data)
+
+    #saves the output into the blob storage defined in function.json
+    return func.HttpResponse (data, status_code=200)
