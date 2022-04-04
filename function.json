@@ -21,7 +21,7 @@
       "type": "blob",
       "direction": "out",
       "connection": "MyStorageConnectionAppSetting",
-      "path": "input/POC1_blob.json"
+      "path": "input/my_blob.json"
     }
   ]
 }
